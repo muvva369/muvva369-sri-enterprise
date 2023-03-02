@@ -1,0 +1,32 @@
+<div class="page-center">
+  <div class="border-box">
+    <h3>Search Github User</h3>
+    <input
+      class="form-control me-2 nosubmit"
+      type="search"
+      [(ngModel)]="username"
+      placeholder="Search..."
+      aria-label="Search"
+    /><br />
+    <button class="btn form-control" (click)="getUser()">Search User</button>
+    <br /><br />
+    <div *ngIf="currentUser">
+      <h4>Search Results:</h4>
+      <div class="border-box">
+        <div class="row" *ngIf="!currentUser.errorMessage">
+          <div class="col-md-6">
+            <div>User Image</div>
+            <img src="{{ currentUser.avatar_url }}" width="50%" />
+          </div>
+          <div class="col-md-6">
+            <div>GitHub User Name</div>
+            {{ currentUser.name }}
+          </div>
+        </div>
+        <div *ngIf="currentUser.errorMessage">
+          {{ currentUser.errorMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

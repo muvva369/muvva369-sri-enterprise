@@ -1,0 +1,44 @@
+<div class="page-center">
+  <div class="border-box">
+    <h1>Your Search History</h1>
+    <div class="results" >
+      <table class="table table-bordered" *ngIf="stateLength>0">
+        <thead>
+          <tr>
+            <th scope="col">Search Item</th>
+            <th scope="col">Search Results</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of searchState.users">
+            <th scope="row">
+              <div>
+                <h5>{{user.searchTerm}}</h5>
+                <img />
+              </div>
+            </th>
+            <td>
+              <div class="row" *ngIf="!user.errorMessage">
+                <div class="col-md-6">
+                  <div>User Image</div>
+                  <img src={{user.avatar_url}} width="50%" />
+                </div>
+                <div class="col-md-6">
+                  <div>GitHub User Name</div>
+                  {{user.name}}
+                </div>
+              </div>
+              <div *ngIf="user.errorMessage">
+                {{user.errorMessage}}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="stateLength==0">
+        <h4>No Search Results</h4>
+      </div>
+    </div><br/>
+    <button *ngIf="stateLength>0"  class="btn form-control" (click)="removeLocalStorage()"> Clear Search History</button>
+  </div>
+</div>
